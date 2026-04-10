@@ -1,5 +1,9 @@
 <?xml version = "1.0" encoding="UTF-8"?>
 <configuration>
+
+    <property name ="LOG_DIR" value ="./logs" />
+    <property name ="LOG_FILE_NAME" value ="spring-boot-monitoring-log" />
+
     <appender name = "CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>
@@ -7,7 +11,24 @@
             </pattern>
         </encoder>
     </appender>
+
+    <appender name = "FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_DIR}/${LOG_FILE_NAME}.log</file>
+        <encoder>
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %highlight(%-5level) %magenta([%X{traceId}]) %yellow([%thread]) %level %logger - %msg%n
+            </pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/${LOG_FILE_NAME}-%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
+            <maxHistory>3</maxHistory>
+        </rollingPolicy>
+
+    </appender>
+
     <root level = "INFO">
         <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
     </root>
 </configuration>
