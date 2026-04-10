@@ -4,6 +4,7 @@ import com.spring.boot.monitoring.model.request.UserCreateRequest;
 import com.spring.boot.monitoring.model.response.UserResponse;
 import com.spring.boot.monitoring.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
 * - request Object -> controller -> User Entity(domain 규칙을 포함한 엔티티 create) -> service -> Response (from domain entity)
 * - Response Object는 처리 시 활용한 객체 상태/값들을 보여주는 목적으로 분리하지 않고 일괄 운용
 * */
+@Slf4j
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
@@ -38,6 +40,8 @@ public class UserController {
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<UserResponse> readUser(@PathVariable("userId") Long userId){
+
+        log.info("[INFO] CHECKING REQUEST PARAM : {}", userId);
 
         UserResponse userResponse = userService.readUser(userId);
 

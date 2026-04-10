@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8000
 
 spring:
   application:
@@ -26,7 +26,9 @@ spring:
 
 logging:
   level:
-    org.springframework.batch.item.database: DEBUG
+    com.spring.boot.monitoring.SpringBootMonitoringApplication : DEBUG
+#    org.springframework.batch.item.database: DEBUG
+    org.apache.catalina: DEBUG
 
 greeting:
   message: Welcome to Monitoring project.
