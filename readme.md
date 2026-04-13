@@ -1,7 +1,14 @@
 ## 1.  개요
 
+> Basic
+
 - Java ver 21.
 - Spring Boot ver 4.0.1 
+
+> Monitoring
+
+- Elastic Search ver 9.1.0
+- Log Stash ver 9.1.0
 
 ## 2. Projects
 
